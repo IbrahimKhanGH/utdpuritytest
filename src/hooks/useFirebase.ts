@@ -8,7 +8,8 @@ interface ScoreData {
   timestamp: number;
 }
 
-type UpdatesObject = Record<string, number | ScoreData>;
+// Update the type to include Firebase's special types
+type UpdatesObject = Record<string, number | ScoreData | object>;
 
 export const useFirebase = () => {
   const saveScore = useCallback(async (score: number, checkedQuestions: Record<number, boolean>) => {
