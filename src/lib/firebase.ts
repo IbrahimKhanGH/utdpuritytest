@@ -2,6 +2,22 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, get } from 'firebase/database';
 import { getAnalytics, isSupported } from 'firebase/analytics';
 
+// Define specific types
+interface ScoreData {
+  score: number;
+  timestamp: number;
+}
+
+interface QuestionStat {
+  count: number;
+}
+
+interface StatsData {
+  totalTests: number;
+  averageScore: number;
+  questionStats: Record<string, QuestionStat>;
+}
+
 const firebaseConfig = {
   // Get these values from your Firebase console
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -29,7 +45,7 @@ export const initAnalytics = async () => {
 };
 
 // Function to get statistics
-export const getStats = async () => {
+export const getStats = async (): Promise<StatsData | null> => {
   try {
     const scoresRef = ref(db, 'scores');
     const questionStatsRef = ref(db, 'questionStats');
@@ -43,7 +59,7 @@ export const getStats = async () => {
     const questionStats = questionStatsSnapshot.val() || {};
 
     // Calculate average score
-    const scoreValues = Object.values(scores).map((s: any) => s.score);
+    const scoreValues = Object.values(scores as Record<string, ScoreData>).map(s => s.score);
     const averageScore = scoreValues.length 
       ? scoreValues.reduce((a: number, b: number) => a + b, 0) / scoreValues.length 
       : 0;

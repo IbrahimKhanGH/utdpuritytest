@@ -2,6 +2,14 @@ import { useCallback } from 'react';
 import { ref, push, increment, update } from 'firebase/database';
 import { db } from '../lib/firebase';
 
+// Define specific types
+interface ScoreData {
+  score: number;
+  timestamp: number;
+}
+
+type UpdatesObject = Record<string, number | ScoreData>;
+
 export const useFirebase = () => {
   const saveScore = useCallback(async (score: number, checkedQuestions: Record<number, boolean>) => {
     try {
@@ -9,7 +17,7 @@ export const useFirebase = () => {
       const scoreRef = push(ref(db, 'scores'));
       
       // Create a batch update for question statistics
-      const updates: Record<string, any> = {};
+      const updates: UpdatesObject = {};
       
       // Add score data
       updates[`scores/${scoreRef.key}`] = {

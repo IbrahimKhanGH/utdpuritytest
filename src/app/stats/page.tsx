@@ -4,8 +4,19 @@ import { useState, useEffect } from 'react';
 import { getStats } from '../../lib/firebase';
 import { questions } from '../questions';
 
+// Define proper types instead of using 'any'
+interface QuestionStat {
+  count: number;
+}
+
+interface Stats {
+  totalTests: number;
+  averageScore: number;
+  questionStats: Record<string, QuestionStat>;
+}
+
 export default function Stats() {
-  const [stats, setStats] = useState<any>(null);
+  const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
