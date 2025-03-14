@@ -1,13 +1,7 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   /* config options here */
   images: {
-    domains: [
-      "source.unsplash.com",
-      "images.unsplash.com",
-      "web-assets.same.dev",
-    ],
     remotePatterns: [
       {
         protocol: "https",
@@ -31,4 +25,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig; 
