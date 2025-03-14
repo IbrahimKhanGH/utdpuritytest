@@ -150,20 +150,31 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4">Your score: {score}</h2>
-            <p className="text-xl mb-6">{getScoreMessage(score)}</p>
-            <p className="mb-6">Thank you for your submission!</p>
+          <div className="text-center results-container">
+            <Image
+              src="/images/title.png"
+              alt="The Official UT Dallas Purity Test"
+              width={600}
+              height={100}
+              priority
+              className="w-full max-w-[600px] h-auto px-4 sm:px-0 mx-auto mb-8"
+              style={{
+                minWidth: '280px',
+                objectFit: 'contain'
+              }}
+            />
+            <h2 className="text-3xl font-bold mb-4">Your UT Dallas Purity Score: {score}</h2>
+            <p className="mb-8 text-lg italic">{getScoreMessage(score)}</p>
             
-            <div className="mt-4 mb-8">
-              <button onClick={shareTest} className="button-secondary mb-4">
-                Share My Score
+            <button onClick={shareTest} className="button share-button">
+              Share Result
+            </button>
+            
+            <div className="mt-10">
+              <button onClick={resetTest} className="button-secondary">
+                Take the test again
               </button>
             </div>
-            
-            <button onClick={resetTest} className="button mt-6">
-              Take the test again
-            </button>
           </div>
         )}
       </div>

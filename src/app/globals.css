@@ -161,6 +161,22 @@ input[type="checkbox"] {
 
 .share-button {
   margin-top: 0;
+  padding: 10px 30px;
+}
+
+.results-container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.results-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.results-container p {
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.75);
 }
 
 .thresher-link {
