@@ -1,0 +1,122 @@
+// Questions array for UT Dallas Purity Test
+export const questions = [
+  // General Student Life (Intro)
+  "Current student at UT Dallas?",
+  "Thought about dropping out of school?",
+  "Applied to (or in) graduate school at UTD?",
+  "On AES?",
+  "Stayed at a dorm freshman year?",
+
+  // Campus Life and Facilities
+  "Slept on campus during finals week?",
+  "Camped a study room (6+ hours)?",
+  "Forgot to return a book from the library?",
+  "Used the campus bathrooms and found them to be dirty?",
+  "Complained about the smell in ECS South?",
+  "Complained about campus construction?",
+  "Ever lost your comet card?",
+  "Had to get a replacement comet card?",
+  "Smoked on campus?",
+  "Drank on campus?",
+  "Vaped in class?",
+  "Went to the SU for a meal?",
+  "Ordered food through Tobor?",
+
+  // Academic Experiences
+  "Cheated on an exam?",
+  "Used AI tools like GPT to complete homework?",
+  "Been late to class?",
+  "Been called out by the professor for being late?",
+  "Skipped a class?",
+  "Been caught skipping class by a professor?",
+  "Skipped a whole class for the whole semester?",
+  "Attended less than 5 lectures through a term?",
+  "Turned in an assignment at 11:59?",
+  "Pulled an all-nighter to finish a project or study for an exam?",
+  "Dropped a class after the first week?",
+  "Changed your major?",
+  "Switched from CS to ITS/CIS?",
+  "Had to carry a group project?",
+  "Been the one that had to be carried at the group project?",
+  "Placed a review on Rate My Professor?",
+  "Failed a class?",
+  "Retook a class?",
+  "Went to class drunk/high?",
+  "Studied at ECSW?",
+  "Studied at JSON?",
+  "Studied at the UGL?",
+  "Had a class later than 7pm?",
+  "Had an 8am class?",
+
+  // Student Activities and Clubs
+  "Joined a club or organization on campus?",
+  "Attended a club meeting or event?",
+  "Held a leadership position in a club?",
+  "Participated in a campus-wide event like a concert or festival?",
+  "Attended a guest lecture or speaker series?",
+  "Been to a career fair/job expo on campus?",
+  "Got a job/internship from a career fair/job expo?",
+  "Been part of a student government or council?",
+  "Organized an event on campus?",
+  "Received an award or recognition from a club or the university?",
+
+  // Social Life and Relationships
+  "Attended a UTD party?",
+  "Been to a UTD frat party?",
+  "Rushed for a fraternity or sorority?",
+  "In a fraternity or sorority?",
+  "Been to a sports game or match at UT Dallas?",
+  "Talked trash about UTD to another UTD student?",
+  "Held hands with someone on campus?",
+  "Kissed someone on campus?",
+  "Hooked up on campus?",
+  "Been in a relationship?",
+  "Been in a relationship w a TA?",
+  "Been in a relationship w a professor?",
+  "Been to a Kappa Sigma party?",
+  "Been to a Chi party?",
+
+  // Commuting and Transportation
+  "Commute to campus via car?",
+  "Have a parking pass?",
+  "Arrived late to class because of parking?",
+  "Got a parking ticket?",
+  "Got more than 5 parking tickets?",
+
+  // Technology and Media
+  "Posted on the UTD Reddit?",
+  "Follow @utdbruhmoments?",
+
+  // Health and Well-being
+  "Ate at the dining hall?",
+  "Ate dining hall breakfast?",
+  "Got sick from the dining hall?",
+  "Worked out on campus?",
+  "Participated in an intramural sports team?",
+
+  // Traditions and Culture
+  "Listened to a concert at the plinth?",
+  "Performed at the plinth?",
+  "Called UT Dallas the \"MIT of the South\"?",
+  "Painted the spirit rock on campus?",
+  "Done the Whoosh sign?",
+  "Taken a picture with Temoc?",
+  "Taken a professional photo at the student memorial fountain?",
+  "Complained about the lack of a football team at UT Dallas?",
+  "Wondered who is under Temoc?",
+  "Seen a furry on campus?",
+
+  // Housing and Living Arrangements
+  "Lived in University Village (UV)?",
+  "Hosted a party in your UV apartment?",
+  "Waited 1+ week for UV maintenance?",
+  "Got in trouble with the PA?",
+  "Lived at Northside?",
+  "Threw a party at Northside?",
+  "Got Northside party shutdown?",
+  "Been to a Northside party?",
+  "Been to Northside Draft House?",
+  "Drank at Northside Draft House?",
+  "Kicked out by your roommate because they were getting active ;)?",
+  "Kicked your roommate out because YOU were getting active ;)?"
+]; 
