@@ -43,7 +43,7 @@ export const questions = [
   "Retook a class?",
   "Went to class drunk/high?",
   "Studied at ECSW?",
-  "Studied at JSON?",
+  "Studied at JSOM?",
   "Studied at the UGL?",
   "Had a class later than 7pm?",
   "Had an 8am class?",
