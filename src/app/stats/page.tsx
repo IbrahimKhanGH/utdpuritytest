@@ -19,6 +19,19 @@ export default function Stats() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Function to check if a question is sensitive
+  const isSensitiveQuestion = (question: string) => {
+    const sensitiveKeywords = [
+      "Cheated",
+      "AI tools",
+      "GPT",
+      "homework",
+    ];
+    return sensitiveKeywords.some(keyword => 
+      question.toLowerCase().includes(keyword.toLowerCase())
+    );
+  };
+
   useEffect(() => {
     const loadStats = async () => {
       const data = await getStats();
@@ -75,7 +88,11 @@ export default function Stats() {
                 <div key={index} className="border-b pb-2">
                   <p className="font-medium">{question}</p>
                   <p className="text-sm text-gray-600">
-                    {count} people ({percentage}% of test takers)
+                    {isSensitiveQuestion(question) ? (
+                      "Nice Try UTDiddy"
+                    ) : (
+                      `${count} people (${percentage}% of test takers)`
+                    )}
                   </p>
                 </div>
               );
