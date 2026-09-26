@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useFirebase } from '../hooks/useFirebase';
-import { questions } from './questions';
+import { questions, getScoreTier } from './questions';
 
 export default function Home() {
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
@@ -67,17 +67,7 @@ export default function Home() {
     setShowSharePrompt(false);
   };
 
-  const getScoreMessage = (score: number) => {
-    if (score >= 90) {
-      return "Do you even go to UTD? 🤔";
-    } else if (score >= 60) {
-      return "You're a respectable UTD student! 📚";
-    } else if (score >= 30) {
-      return "You're a Comet for Life! 💀";
-    } else {
-      return "Nah, you're genuinely cooked. UTD runs in your blood! 🔥";
-    }
-  };
+  const tier = getScoreTier(score);
 
   return (
     <main className="min-h-screen py-8">
@@ -106,7 +96,7 @@ export default function Home() {
             </div>
 
             <p className="caution">
-              Caution: This is not a bucket list. You are beyond cooked if you complete all the items on this list.
+              This is not a bucket list. A low score means Temoc knows where you park.
             </p>
 
             <p className="instructions">
@@ -114,16 +104,16 @@ export default function Home() {
             </p>
 
             <div className="question-list">
-                {questions.map((question, index) => (
-                <div key={index} className="question-item">
+                {questions.map(question => (
+                <div key={question.id} className="question-item">
                       <input
                         type="checkbox"
-                        id={`question-${index + 1}`}
-                        checked={!!checkedItems[index + 1]}
-                        onChange={() => toggleItem(index + 1)}
+                        id={`question-${question.id}`}
+                        checked={!!checkedItems[question.id]}
+                        onChange={() => toggleItem(question.id)}
                       />
-                  <label htmlFor={`question-${index + 1}`}>
-                    {question}
+                  <label htmlFor={`question-${question.id}`}>
+                    {question.text}
                     </label>
                 </div>
                 ))}
@@ -164,7 +154,8 @@ export default function Home() {
               }}
             />
             <h2 className="text-3xl font-bold mb-4">Your UT Dallas Purity Score: {score}</h2>
-            <p className="mb-8 text-lg italic">{getScoreMessage(score)}</p>
+            <p className="mb-2 text-xl font-bold">{tier.name}</p>
+            <p className="mb-8 text-lg italic">{tier.tagline}</p>
             
             <button onClick={shareTest} className="button share-button">
               Share Result

@@ -14,22 +14,22 @@ type UpdatesObject = Record<string, number | ScoreData | object>;
 export const useFirebase = () => {
   const saveScore = useCallback(async (score: number, checkedQuestions: Record<number, boolean>) => {
     try {
-      // Save the score
-      const scoreRef = push(ref(db, 'scores'));
+      // Save the score (v2 paths; v1 data is left untouched)
+      const scoreRef = push(ref(db, 'scores_v2'));
       
       // Create a batch update for question statistics
       const updates: UpdatesObject = {};
       
       // Add score data
-      updates[`scores/${scoreRef.key}`] = {
+      updates[`scores_v2/${scoreRef.key}`] = {
         score,
         timestamp: Date.now()
       };
       
       // Update question statistics
-      Object.entries(checkedQuestions).forEach(([questionIndex, isChecked]) => {
+      Object.entries(checkedQuestions).forEach(([questionId, isChecked]) => {
         if (isChecked) {
-          updates[`questionStats/${questionIndex}/count`] = increment(1);
+          updates[`questionStats_v2/${questionId}/count`] = increment(1);
         }
       });
       

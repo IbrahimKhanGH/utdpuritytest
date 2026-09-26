@@ -47,8 +47,9 @@ export const initAnalytics = async () => {
 // Function to get statistics
 export const getStats = async (): Promise<StatsData | null> => {
   try {
-    const scoresRef = ref(db, 'scores');
-    const questionStatsRef = ref(db, 'questionStats');
+    // v2 = the 2026 question list; v1 data under 'scores'/'questionStats' is left untouched.
+    const scoresRef = ref(db, 'scores_v2');
+    const questionStatsRef = ref(db, 'questionStats_v2');
 
     const [scoresSnapshot, questionStatsSnapshot] = await Promise.all([
       get(scoresRef),

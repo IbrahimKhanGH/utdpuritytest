@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getStats } from '../../lib/firebase';
-import { questions } from '../questions';
+import { questions, SENSITIVE_QUESTION_IDS } from '../questions';
 
 // Define proper types instead of using 'any'
 interface QuestionStat {
@@ -18,19 +18,6 @@ interface Stats {
 export default function Stats() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
-
-  // Function to check if a question is sensitive
-  const isSensitiveQuestion = (question: string) => {
-    const sensitiveKeywords = [
-      "Cheated",
-      "AI tools",
-      "GPT",
-      "homework",
-    ];
-    return sensitiveKeywords.some(keyword => 
-      question.toLowerCase().includes(keyword.toLowerCase())
-    );
-  };
 
   useEffect(() => {
     const loadStats = async () => {
@@ -80,15 +67,15 @@ export default function Stats() {
         <div>
           <h2 className="text-2xl font-bold mb-4">Question Statistics</h2>
           <div className="space-y-4">
-            {questions.map((question, index) => {
-              const count = stats.questionStats[index + 1]?.count || 0;
+            {questions.map(question => {
+              const count = stats.questionStats[question.id]?.count || 0;
               const percentage = stats.totalTests ? ((count / stats.totalTests) * 100).toFixed(1) : 0;
               
               return (
-                <div key={index} className="border-b pb-2">
-                  <p className="font-medium">{question}</p>
+                <div key={question.id} className="border-b pb-2">
+                  <p className="font-medium">{question.text}</p>
                   <p className="text-sm text-gray-600">
-                    {isSensitiveQuestion(question) ? (
+                    {SENSITIVE_QUESTION_IDS.has(question.id) ? (
                       "Nice Try UTDiddy"
                     ) : (
                       `${count} people (${percentage}% of test takers)`
