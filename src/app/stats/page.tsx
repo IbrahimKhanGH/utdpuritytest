@@ -10,7 +10,8 @@ interface QuestionStat {
 }
 
 interface Stats {
-  totalTests: number;
+  allTimeTests: number;
+  currentVersionTests: number;
   averageScore: number;
   questionStats: Record<string, QuestionStat>;
 }
@@ -60,7 +61,8 @@ export default function Stats() {
         
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Overall Statistics</h2>
-          <p>Total Tests Taken: {stats.totalTests}</p>
+          <p>Total Tests Taken: {stats.allTimeTests}</p>
+          <p>Current Version Responses: {stats.currentVersionTests}</p>
           <p>Average Score: {stats.averageScore.toFixed(2)}</p>
         </div>
 
@@ -69,7 +71,7 @@ export default function Stats() {
           <div className="space-y-4">
             {questions.map(question => {
               const count = stats.questionStats[question.id]?.count || 0;
-              const percentage = stats.totalTests ? ((count / stats.totalTests) * 100).toFixed(1) : 0;
+              const percentage = stats.currentVersionTests ? ((count / stats.currentVersionTests) * 100).toFixed(1) : 0;
               
               return (
                 <div key={question.id} className="border-b pb-2">

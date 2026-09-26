@@ -13,7 +13,8 @@ interface QuestionStat {
 }
 
 interface StatsData {
-  totalTests: number;
+  allTimeTests: number; // v1 + v2 scores
+  currentVersionTests: number; // v2 scores only
   averageScore: number;
   questionStats: Record<string, QuestionStat>;
 }
@@ -47,15 +48,19 @@ export const initAnalytics = async () => {
 // Function to get statistics
 export const getStats = async (): Promise<StatsData | null> => {
   try {
-    // v2 = the 2026 question list; v1 data under 'scores'/'questionStats' is left untouched.
+    // v2 = the 2026 question list. v1 'scores' only counts toward the all-time total;
+    // the average and per-question stats use v2 data, since the questions changed.
+    const v1ScoresRef = ref(db, 'scores');
     const scoresRef = ref(db, 'scores_v2');
     const questionStatsRef = ref(db, 'questionStats_v2');
 
-    const [scoresSnapshot, questionStatsSnapshot] = await Promise.all([
+    const [v1ScoresSnapshot, scoresSnapshot, questionStatsSnapshot] = await Promise.all([
+      get(v1ScoresRef),
       get(scoresRef),
       get(questionStatsRef)
     ]);
 
+    const v1TestCount = v1ScoresSnapshot.size;
     const scores = scoresSnapshot.val() || {};
     const questionStats = questionStatsSnapshot.val() || {};
 
@@ -66,7 +71,8 @@ export const getStats = async (): Promise<StatsData | null> => {
       : 0;
 
     return {
-      totalTests: scoreValues.length,
+      allTimeTests: v1TestCount + scoreValues.length,
+      currentVersionTests: scoreValues.length,
       averageScore,
       questionStats
     };
